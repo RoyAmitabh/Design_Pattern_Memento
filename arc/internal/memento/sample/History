@@ -1,0 +1,27 @@
+package arc.internal.memento.sample;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import arc.internal.memento.sample.SimpleWord.WordMemento;
+
+public class History {
+
+	private List<WordMemento> trace;
+		
+	public History() {
+		trace = new ArrayList<>();
+	}
+
+	public void add(WordMemento snapshot) {
+		trace.add(snapshot);
+		
+	}
+
+	public WordMemento pop() {
+		int lastIndex = trace.size() - 1;
+		WordMemento wm = trace.get(lastIndex);
+		trace.remove(wm);
+		return wm;
+	}
+}
