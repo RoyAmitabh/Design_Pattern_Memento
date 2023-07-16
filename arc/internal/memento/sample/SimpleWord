@@ -1,0 +1,71 @@
+package arc.internal.memento.sample;
+
+
+
+public class SimpleWord {
+	 private String content;
+	 private boolean bold;
+	 private boolean italic;
+	 private boolean underline;	 	 
+	
+	
+
+	// and many more fields can be there as per feature
+	 public void write(String text, boolean bold, boolean italic, boolean underline) {
+		 //set current state
+		 content = text;
+		 this.bold = bold;
+		 this.italic = italic;
+		 this.underline = underline;		
+	 }
+	 
+	 public void restore(WordMemento wm) {		
+		 //restore state
+		 content = wm.getContent();
+		 bold = wm.isBold();
+		 italic = wm.isItalic();
+		 underline = wm.isUnderline();
+	 }
+
+	 public WordMemento getSnapshot() {
+		 return new WordMemento(content, bold, italic, underline);
+	}
+
+
+	public static class WordMemento{
+		 private String content;
+		 private boolean bold;
+		 private boolean italic;
+		 private boolean underline;
+		
+		private WordMemento(String content, boolean bold, boolean italic, boolean underline) {
+			super();
+			this.content = content;
+			this.bold = bold;
+			this.italic = italic;
+			this.underline = underline;			
+		}
+
+		private String getContent() {
+			return content;
+		}
+
+		private boolean isBold() {
+			return bold;
+		}
+
+		private boolean isItalic() {
+			return italic;
+		}
+
+		private boolean isUnderline() {
+			return underline;
+		}
+ 
+	 }
+	public void displayState() {
+	System.out.println("[content=" + content + ", bold=" + bold + ", italic=" + italic + ", underline=" + underline
+			+ "]");
+	}
+	
+}
