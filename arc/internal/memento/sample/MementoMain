@@ -1,0 +1,29 @@
+package arc.internal.memento.sample;
+
+
+public class MementoMain {
+
+	public static void main(String args[]) {
+		SimpleWord editor = new SimpleWord();
+		History trace = new History();
+		editor.write("Hello", true, false, false);
+		//display the current state
+		editor.displayState();
+		trace.add(editor.getSnapshot());
+		editor.write("Hello how", true, false, false);
+		//display the current state
+		editor.displayState();
+		trace.add(editor.getSnapshot());
+		editor.write("Hello how are", true, false, false);
+		//display the current state
+		editor.displayState();
+		trace.add(editor.getSnapshot());
+		editor.write("Hello how are you?", true, false, false);
+		//display the current state
+		editor.displayState();
+		System.out.println("---------------");
+		editor.restore(trace.pop());
+		//display the current state
+		editor.displayState();
+	}
+}
